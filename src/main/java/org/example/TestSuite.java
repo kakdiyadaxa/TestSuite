@@ -26,7 +26,6 @@ public class TestSuite {
 
     protected static WebDriver driver;
     public static void clickOnElement (By by){
-
         driver.findElement(by).click();
     }
     public static void typeText (By by, String text){
