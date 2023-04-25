@@ -49,12 +49,11 @@ public class TestSuite {
     }
     @AfterMethod
     public static void closeBrowser(){
-       // driver.close();
+        driver.close();
     }
     @Test
     public static void verifyRegisteredUserShouldBeAbleToReferAProductToAFriendSuccessfully(){
-        //open browser
-        //openBrowser();
+
         //click on register
         clickOnElement(By.className("ico-register"));
         //type firstname
@@ -93,13 +92,11 @@ public class TestSuite {
         actualMessage = getTextFromElement(By.xpath("//div[@class=\"result\"]"));
         System.out.println("My Message: "+actualMessage);
         Assert.assertEquals(actualMessage,getExpectedReferAFriendMsg,"Your message has been sent.");
-        //for close browser
-        //closeBrowser();
+
     }
     @Test
     public static void RegisteredUserShouldVoteSuccessfully(){
-        //open browser
-        //openBrowser();
+
         //click on register
         clickOnElement(By.className("ico-register"));
         //type firstname
@@ -134,13 +131,11 @@ public class TestSuite {
         String actualMessage;
         actualMessage = getTextFromElement(By.xpath("//span[@class=\"poll-total-votes\"]"));
         Assert.assertEquals(actualMessage,getExpectedVotingMsg,"Voting is not working.");
-        //for close browser
-        //closeBrowser();
+
     }
     @Test
     public static void verifyUserShouldBeAbleToRegisterSuccessfully(){
-        //open browser
-        //openBrowser();
+
         //click on register button
         clickOnElement(By.className("ico-register"));
         //type firstname
@@ -163,13 +158,11 @@ public class TestSuite {
         //print message
         System.out.println("My message " + actualMessage);
         Assert.assertEquals(actualMessage,getExpectedRegistrationCompleteMsg,"Registration is not working");
-        //for close browser
-        //closeBrowser();
+
     }
     @Test
     public static void verifyUserShouldBeAbleToEmailAFriendSuccessfully(){
-        //open browser
-        //openBrowser();
+
         //click on ADD TO CART button of Apple MacBook Pro 13-inch
         clickOnElement(By.xpath("//div[@class=\"item-grid\"]/div[2]/div/div[2]/div[3]/div[2]/button[1]"));
         //click on Email a friend
@@ -187,13 +180,9 @@ public class TestSuite {
         System.out.println("Error Message:"  +actualMessage);
         //for Expected and actual result
         Assert.assertEquals(actualMessage,getExpectedEmailAFriendMsg,"Your message has not been sent.");
-        //for close browser
-        //closeBrowser();
     }
     @Test
     public static void verifyUserShouldBeAbleToCompareTheTwoProductsSuccessfully(){
-        //open browser
-        //openBrowser();
 
         //click on Add to compare list for HTC One M8 Android L 5.0 Lollipop
         clickOnElement(By.xpath("//div[@class=\"item-grid\"]/div[3]/div[1]/div[2]/div[3]/div[2]/button[2]"));
@@ -231,9 +220,6 @@ public class TestSuite {
         System.out.println("My Message :" +actualMessage);
 
         Assert.assertEquals(actualMessage,getExpectedCompareAProductMsg,"You still have items to compare.");
-
-        //close the browser
-        //driver.close();
     }
     @Test
     public static void verifyUserShouldBeAbleToSeeProductInShoppingCartSuccessfully(){
@@ -257,6 +243,7 @@ public class TestSuite {
     }
     @Test
     public static void verifyNonRegisteredUserShouldBeAbleToUseCommunityPollSuccessfully(){
+
         //click on good
         clickOnElement(By.id("pollanswers-2"));
 
