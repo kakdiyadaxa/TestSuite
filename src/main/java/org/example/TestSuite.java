@@ -17,11 +17,11 @@ import java.util.concurrent.TimeUnit;
 public class TestSuite {
     static  String getExpectedReferAFriendMsg = "Your message has not been sent.";
     static String getExpectedVotingMsg = "Voting is not working.";
-    static String getExpectedRegistrationCompleteMsg = "Thanks for Registration.";
+    static String getExpectedRegistrationCompleteMsg = "Your registration was not completed.";
     static String getExpectedEmailAFriendMsg = "Your message has not been sent.";
-    static String getExpectedCompareAProductMsg = "You have no items to compare.";
+    static String getExpectedCompareAProductMsg = "You have two items to compare.";
     static String getExpectedProductInShoppingCartMsg = "Your Shopping Cart is empty!";
-    static String getExpectedCommunityPollMsg = "Your voting was Successfully done.";
+    static String getExpectedCommunityPollMsg = "You participated in community poll successfully.";
 
 
     protected static WebDriver driver;
@@ -42,12 +42,14 @@ public class TestSuite {
     public  static void  openBrowser(){
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //maximizing the window
         driver.manage().window().maximize();
-        //Type url
+        //Typing url
         driver.get("https://demo.nopcommerce.com/");
     }
     @AfterMethod
     public static void closeBrowser(){
+        //to close the browser
         driver.close();
     }
     @Test
@@ -60,7 +62,7 @@ public class TestSuite {
         //type lastname
         typeText(By.id("LastName"), "FirstnameTest");
         //type email address
-        typeText(By.id("Email"), "vb1@gmail.com");
+        typeText(By.id("Email"), "vb3@gmail.com");
         //type password
         typeText(By.id("Password"), "test1234");
         //type confirm password
@@ -71,7 +73,7 @@ public class TestSuite {
         //click on login
         clickOnElement(By.className("ico-login"));
         //type email address
-        typeText(By.id("Email"), "vb1@gmail.com");
+        typeText(By.id("Email"), "vb3@gmail.com");
         //type password
         typeText(By.id("Password"), "test1234");
         //click on LOG IN button
@@ -90,7 +92,7 @@ public class TestSuite {
         String actualMessage;
         actualMessage = getTextFromElement(By.xpath("//div[@class=\"result\"]"));
         System.out.println("My Message: "+actualMessage);
-        Assert.assertEquals(actualMessage,getExpectedReferAFriendMsg,"Your message has been sent.");
+        Assert.assertEquals(actualMessage,getExpectedReferAFriendMsg,"Your message has not been sent.");
 
     }
     @Test
@@ -156,7 +158,7 @@ public class TestSuite {
         actualMessage = getTextFromElement(By.xpath("//div[@class='result']"));
         //print message
         System.out.println("My message " + actualMessage);
-        Assert.assertEquals(actualMessage,getExpectedRegistrationCompleteMsg,"Registration is not working");
+        Assert.assertEquals(actualMessage,getExpectedRegistrationCompleteMsg,"Your registration was not completed.");
 
     }
     @Test
@@ -218,7 +220,7 @@ public class TestSuite {
         String actualMessage = getTextFromElement(By.xpath("//div[@class='no-data'][text()='You have no items to compare.']"));
         System.out.println("My Message :" +actualMessage);
 
-        Assert.assertEquals(actualMessage,getExpectedCompareAProductMsg,"You still have items to compare.");
+        Assert.assertEquals(actualMessage,getExpectedCompareAProductMsg,"You have two items to compare.");
     }
     @Test
     public static void verifyUserShouldBeAbleToSeeProductInShoppingCartSuccessfully(){
@@ -256,7 +258,7 @@ public class TestSuite {
         String actualMessage = getTextFromElement(By.xpath("//div[@id=\"block-poll-vote-error-1\"]"));
         System.out.println("My Message:"+actualMessage);
 
-        Assert.assertEquals(actualMessage,getExpectedCommunityPollMsg,"Your voting was Successfully done.");
+        Assert.assertEquals(actualMessage,getExpectedCommunityPollMsg,"You participated in community poll successfully. ");
     }
 }
 
