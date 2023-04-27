@@ -11,7 +11,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class TestSuite {
@@ -34,10 +36,12 @@ public class TestSuite {
     public static String getTextFromElement (By by){
         return driver.findElement(by).getText();
     }
-    public static long timestamp() {
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        return timestamp.getTime();
-    }
+//by using this time will creates different in same run
+//    public static long timestamp() {
+//       Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+//        return timestamp.getTime();
+//    }
+
     @BeforeMethod
     public  static void  openBrowser(){
         driver = new ChromeDriver();
@@ -55,6 +59,8 @@ public class TestSuite {
     @Test
     public static void verifyRegisteredUserShouldBeAbleToReferAProductToAFriendSuccessfully(){
 
+        //by using this it creates common time (you can use it as many times you want)
+        String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         //click on register
         clickOnElement(By.className("ico-register"));
         //type firstname
@@ -62,7 +68,7 @@ public class TestSuite {
         //type lastname
         typeText(By.id("LastName"), "FirstnameTest");
         //type email address
-        typeText(By.id("Email"), "vb3@gmail.com");
+        typeText(By.id("Email"), "vb3"+timeStamp+"@gmail.com");
         //type password
         typeText(By.id("Password"), "test1234");
         //type confirm password
@@ -73,7 +79,7 @@ public class TestSuite {
         //click on login
         clickOnElement(By.className("ico-login"));
         //type email address
-        typeText(By.id("Email"), "vb3@gmail.com");
+        typeText(By.id("Email"), "vb3"+timeStamp+"@gmail.com");
         //type password
         typeText(By.id("Password"), "test1234");
         //click on LOG IN button
@@ -83,7 +89,7 @@ public class TestSuite {
         //click on email a friend
         clickOnElement(By.xpath("//button[@class=\"button-2 email-a-friend-button\"]"));
         //type Friend's email
-        typeText(By.id("FriendEmail"),"vb20" +timestamp() +"@gmail.com");
+        typeText(By.id("FriendEmail"),"vb3"+timeStamp+"@gmail.com");
         //type personal message
         typeText(By.id("PersonalMessage"),"Hey, check out this awesome website!");
         //click on send email
@@ -97,7 +103,7 @@ public class TestSuite {
     }
     @Test
     public static void RegisteredUserShouldVoteSuccessfully(){
-
+        String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         //click on register
         clickOnElement(By.className("ico-register"));
         //type firstname
@@ -105,7 +111,7 @@ public class TestSuite {
         //type lastname
         typeText(By.id("LastName"), "LastnameTest");
         //type email address
-        typeText(By.id("Email"), "vb5@gmail.com");
+        typeText(By.id("Email"), "vb5"+timeStamp+"@gmail.com");
         //type password
         typeText(By.id("Password"), "test1234");
         //type confirm password
@@ -118,7 +124,7 @@ public class TestSuite {
         //click on login
         clickOnElement(By.className("ico-login"));
         //type email address
-        typeText(By.id("Email"), "vb5@gmail.com");
+        typeText(By.id("Email"), "vb5"+timeStamp+"@gmail.com");
         //type password
         typeText(By.id("Password"), "test1234");
         //click on LOG IN button
@@ -136,17 +142,15 @@ public class TestSuite {
     }
     @Test
     public static void verifyUserShouldBeAbleToRegisterSuccessfully(){
-
+        String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         //click on register button
         clickOnElement(By.className("ico-register"));
         //type firstname
         typeText(By.id("FirstName"), "FirstnameTest");
         //type lastname
         typeText(By.id("LastName"), "LastNametest");
-        //Timestamp timestamp;
-        //static Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         //type email address
-        typeText(By.id("Email"), "testmail" + timestamp() + "@gmail.com");
+        typeText(By.id("Email"), "testmail"+timeStamp+"@gmail.com");
         //type password
         typeText(By.id("Password"), "test1234");
         //type confirm password
@@ -169,7 +173,7 @@ public class TestSuite {
         //click on Email a friend
         clickOnElement(By.xpath("//div[@class='email-a-friend']"));
         //type Friend's email
-        typeText(By.className("friend-email"),"sp@gmail.com");
+        typeText(By.className("friend-email"),"sp2@gmail.com");
         //type your email address
         typeText(By.className("your-email"),"dp12@gmail.com");
         //click on send email
